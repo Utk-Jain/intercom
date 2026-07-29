@@ -4,8 +4,16 @@ import { apiAuth } from "../services/api";
 
 export default function DemoWidget() {
   useEffect(() => {
-    // Dynamically inject widget script
-    const backendUrl = import.meta.env.VITE_API_URL || "http://localhost:8000";
+    const getBackendUrl = () => {
+      if (import.meta.env.VITE_API_URL) return import.meta.env.VITE_API_URL;
+      if (typeof window !== "undefined") {
+        if (window.location.port === "5173") return "http://localhost:8000";
+        return window.location.origin;
+      }
+      return "http://localhost:8000";
+    };
+
+    const backendUrl = getBackendUrl();
     window.INTERCOM_BACKEND_URL = backendUrl;
     
     const user = apiAuth.getUser();
@@ -18,6 +26,7 @@ export default function DemoWidget() {
     script.async = true;
     document.body.appendChild(script);
 
+
     return () => {
       // Cleanup widget if unmounted
       const existingContainer = document.getElementById("intercom-widget-container");
@@ -26,7 +35,9 @@ export default function DemoWidget() {
     };
   }, []);
 
-  const embedCode = `<script src="https://backend-domain/static/widget.js"></script>`;
+  const currentHost = typeof window !== "undefined" ? window.location.origin : "https://backend-domain";
+  const embedCode = `<script src="${currentHost}/static/widget.js"></script>`;
+
 
   return (
     <div className="min-h-screen bg-gray-50 p-8">
