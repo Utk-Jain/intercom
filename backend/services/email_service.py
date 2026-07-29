@@ -73,7 +73,8 @@ async def poll_gmail_imap_loop():
                 await asyncio.to_thread(_check_imap_inbox, loop)
         except Exception as e:
             logger.error(f"Error during IMAP poll loop: {e}")
-        await asyncio.sleep(15)
+        await asyncio.sleep(5)
+
 
 def _check_imap_inbox(loop):
     try:
