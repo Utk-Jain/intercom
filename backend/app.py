@@ -63,9 +63,23 @@ widget_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file
 if os.path.exists(widget_dir):
     app.mount("/static", StaticFiles(directory=widget_dir), name="static")
 
-@app.get("/")
-async def root():
-    return {"message": "Minimal Intercom Clone API is running"}
+# Mount frontend dist directory if present for 1-click single service deployment
+frontend_dist = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "frontend", "dist")
+if os.path.exists(frontend_dist):
+    from fastapi.responses import FileResponse
+    app.mount("/assets", StaticFiles(directory=os.path.join(frontend_dist, "assets")), name="frontend_assets")
+    
+    @app.get("/{full_path:path}")
+    async def serve_spa(full_path: str):
+        file_path = os.path.join(frontend_dist, full_path)
+        if full_path and os.path.exists(file_path) and os.path.isfile(file_path):
+            return FileResponse(file_path)
+        return FileResponse(os.path.join(frontend_dist, "index.html"))
+else:
+    @app.get("/")
+    async def root():
+        return {"message": "Minimal Intercom Clone API is running"}
+
 
 @app.websocket("/ws")
 async def websocket_endpoint(

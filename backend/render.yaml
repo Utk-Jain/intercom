@@ -1,9 +1,9 @@
 services:
   - type: web
-    name: intercom-backend
+    name: intercom-app
     env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
+    buildCommand: cd ../frontend && npm install && npm run build && cd ../backend && pip install -r requirements.txt
+    startCommand: cd ../backend && uvicorn app:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: DATABASE_URL
         value: sqlite+aiosqlite:///./intercom.db
