@@ -89,23 +89,8 @@ export default function Settings() {
             </div>
           )}
         </form>
-
-        {/* CNAME Verification Instructions */}
-        <div className="mt-6 pt-6 border-t border-gray-100 space-y-3">
-          <div className="flex items-center space-x-1.5 text-xs font-semibold text-gray-800">
-            <Info className="w-4 h-4 text-blue-600" />
-            <span>DNS Configuration Guide</span>
-          </div>
-          <p className="text-xs text-gray-600 leading-relaxed">
-            To serve your Public Help Center on your custom domain, create a CNAME record in your DNS provider:
-          </p>
-          <div className="bg-gray-900 text-gray-100 p-3 rounded text-xs font-mono">
-            <div>Type: CNAME</div>
-            <div>Name: {customDomain.split(".")[0] || "help"}</div>
-            <div>Value: cname.intercom-clone.vercel.app</div>
-          </div>
-        </div>
       </div>
     </div>
   );
+
 }

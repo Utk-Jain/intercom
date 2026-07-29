@@ -56,9 +56,14 @@ app.include_router(kb_router)
 app.include_router(ai_router)
 app.include_router(settings_router)
 app.include_router(widget_router)
-app.include_router(webhooks_router)
+# Health Check Endpoint
+@app.get("/health")
+@app.get("/api/health")
+async def health_check():
+    return {"status": "ok", "service": "intercom-backend"}
 
 # Mount static directory for widget files
+
 widget_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "widget")
 if os.path.exists(widget_dir):
     app.mount("/static", StaticFiles(directory=widget_dir), name="static")
