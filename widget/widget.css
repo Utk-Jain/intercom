@@ -1,0 +1,236 @@
+#intercom-widget-container {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  z-index: 99999;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+#intercom-bubble {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #2563eb;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+#intercom-bubble:hover {
+  transform: scale(1.05);
+  background-color: #1d4ed8;
+}
+
+#intercom-chat-window {
+  width: 360px;
+  height: 520px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin-bottom: 12px;
+  border: 1px solid #e5e7eb;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+#intercom-chat-window.hidden {
+  display: none;
+}
+
+.intercom-header {
+  background-color: #2563eb;
+  color: white;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.intercom-title {
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.intercom-presence-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #22c55e;
+  display: inline-block;
+}
+
+.intercom-presence-dot.offline {
+  background-color: #9ca3af;
+}
+
+.intercom-presence-text {
+  font-size: 11px;
+  opacity: 0.9;
+  font-weight: 400;
+}
+
+.intercom-close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0 4px;
+}
+
+.intercom-body {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #f9fafb;
+}
+
+.intercom-msg {
+  max-width: 82%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 1.4;
+  word-wrap: break-word;
+}
+
+.intercom-msg.agent {
+  background-color: #ffffff;
+  color: #1f2937;
+  align-self: flex-start;
+  border: 1px solid #e5e7eb;
+  border-bottom-left-radius: 2px;
+}
+
+.intercom-msg.customer {
+  background-color: #2563eb;
+  color: white;
+  align-self: flex-end;
+  border-bottom-right-radius: 2px;
+}
+
+.intercom-msg-meta {
+  font-size: 10px;
+  opacity: 0.75;
+  margin-top: 4px;
+  text-align: right;
+}
+
+.intercom-msg.customer .intercom-msg-meta {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.intercom-read-receipt {
+  font-weight: bold;
+  margin-left: 3px;
+}
+
+.intercom-read-receipt.read {
+  color: #93c5fd;
+}
+
+.intercom-typing-indicator {
+  padding: 4px 16px;
+  font-size: 11px;
+  color: #6b7280;
+  font-style: italic;
+  background-color: #f9fafb;
+}
+
+/* Suggested KB Articles Dropdown Popup above input */
+.intercom-kb-popup {
+  background-color: #ffffff;
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+  max-height: 150px;
+  overflow-y: auto;
+  padding: 8px 12px;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.intercom-kb-popup-title {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #6b7280;
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+
+.intercom-article-item {
+  padding: 6px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 4px;
+  background-color: #f3f4f6;
+  transition: background-color 0.15s ease;
+}
+
+.intercom-article-item:hover {
+  background-color: #e5e7eb;
+}
+
+.intercom-article-item-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.intercom-article-item-snippet {
+  font-size: 11px;
+  color: #4b5563;
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.intercom-footer {
+  padding: 12px;
+  background-color: #ffffff;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  gap: 8px;
+}
+
+.intercom-input {
+  flex: 1;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 13px;
+  outline: none;
+}
+
+.intercom-input:focus {
+  border-color: #2563eb;
+}
+
+.intercom-send-btn {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.intercom-send-btn:hover {
+  background-color: #1d4ed8;
+}
