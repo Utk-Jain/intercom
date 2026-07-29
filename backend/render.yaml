@@ -6,14 +6,12 @@ services:
     startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: DATABASE_URL
-        sync: false
+        value: sqlite+aiosqlite:///./intercom.db
       - key: JWT_SECRET
         generateValue: true
       - key: GROQ_API_KEY
         sync: false
-      - key: GMAIL_CLIENT_ID
+      - key: SUPPORT_EMAIL
         sync: false
-      - key: GMAIL_CLIENT_SECRET
-        sync: false
-      - key: GMAIL_REFRESH_TOKEN
+      - key: GMAIL_APP_PASSWORD
         sync: false
